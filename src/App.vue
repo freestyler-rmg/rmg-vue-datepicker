@@ -1,22 +1,297 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <DatePicker />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DatePicker from './components/DatePicker.vue';
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    DatePicker
   }
 }
 </script>
 
 <style lang="scss">
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  -webkit-text-stroke-width: 0;
+  -webkit-text-stroke-color: transparent;
+}
+
+html {
+  min-height: 100%;
+  font-size: 62.5%; /* 1rem == 10px */
+  position: relative;
+}
+
+body {
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+
+a {
+  font-weight: normal;
+  outline: 0;
+  text-decoration: none;
+  color: inherit;
+  &:hover, &:active, &:focus {
+    outline: 0;
+  }
+}
+
+a img {
+  border: none;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  border-style: none;
+  font-size: 1.2rem;
+}
+
+svg {
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+
+/*/
+ * Content Division
+ * -----------------------------------------------------------------------------
+/*/
+
+header,
+section,
+footer,
+aside,
+nav,
+main,
+article,
+figure {
+  display: block;
+}
+
+/*/
+ * Typography
+ * -----------------------------------------------------------------------------
+/*/
+
+strong,
+b {
+  font-weight: bold;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+u {
+  text-decoration: underline;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -.25em;
+}
+
+sup {
+  top: -.5em;
+}
+
+p,
+ul,
+ol,
+table,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.3;
+}
+
+ul, ol {
+  list-style-type: none;
+  &.inline {
+    font-size: 0;
+    letter-spacing: 0;
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1em;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+  -ms-overflow-style: scrollbar;
+}
+
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+/*/
+ * Form
+ * -----------------------------------------------------------------------------
+/*/
+
+label,
+button {
+  -webkit-tap-highlight-color: rgba(#000, 0);
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  -webkit-appearance: none;
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+input,
+textarea {
+  outline: 0;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  min-height: 10rem;
+  font-family: inherit;
+}
+
+select, option {
+  outline: 0;
+  &:active, &:hover {
+    outline: 0;
+  }
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+  height: auto;
+}
+
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+[type="search"] {
+  outline-offset: -2px;
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  font: inherit;
+  -webkit-appearance: button;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+
+
+/*/
+ * Table
+ * -----------------------------------------------------------------------------
+/*/
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  text-align: inherit;
+}
+
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,5 +299,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  font-size: 1.6rem;
 }
 </style>
