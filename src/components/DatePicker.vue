@@ -21,7 +21,6 @@ import Years from './childs/Years.vue';
 import DateInput from './childs/DateInput.vue';
 import Months from './childs/Months.vue';
 import Dates from './childs/Dates.vue';
-
 export default {
   name: 'DatePicker',
   components: {
@@ -34,7 +33,7 @@ export default {
     return {
       showYears: false,
       showMonths: false,
-      showDates: false
+      showDates: true
     }
   }
 }
@@ -129,6 +128,7 @@ export default {
         li {
           cursor: default;
           flex: 0 0 21/7*1rem;
+          color: #777;
           &:hover {
             background-color: inherit;
           }
