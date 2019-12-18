@@ -1,9 +1,9 @@
 <template>
   <div class="datepicker-panel date-picker">
     <ul class="navigation">
-      <li>prev</li>
+      <li @click="prevMonth">prev</li>
       <li>{{ months[today.getMonth()]}} {{today.getFullYear() }}</li>
-      <li>next</li>
+      <li @click="nextMonth">next</li>
     </ul>
 
     <ul class="list days-list">
@@ -11,8 +11,8 @@
     </ul>
 
     <ul class="list date-list">
-      <li v-for="date in startDay" :key="date">
-        a
+      <li v-for="date in startDay" :key="date" class="disabled">
+        &nbsp;
       </li>
       <li v-for="date in dates" :key="date.index">
         {{ date }}
@@ -55,13 +55,28 @@ export default {
         array.push(i);
       }
       return array;
+    },
+
+    prevMonth: function() {
+      this.today = new Date(this.today.setMonth(this.today.getMonth() - 1));
+      this.dates = this.totalDays(this.today.getFullYear(), this.today.getMonth());
+      this.startDay = this.firstDay(this.today.getFullYear(), this.today.getMonth());
+    },
+
+    nextMonth: function() {
+      this.today = new Date(this.today.setMonth(this.today.getMonth() + 1));
+      this.dates = this.totalDays(this.today.getFullYear(), this.today.getMonth());
+      this.startDay = this.firstDay(this.today.getFullYear(), this.today.getMonth());
+    },
+
+    testing: function() {
+      console.log('test');
     }
   },
 
   mounted: function() {
     this.dates = this.totalDays(this.today.getFullYear(), this.today.getMonth());
     this.startDay = this.firstDay(this.today.getFullYear(), this.today.getMonth());
-    console.log((new Date(2019, 11)).getDay());
   }
 }
 </script>
