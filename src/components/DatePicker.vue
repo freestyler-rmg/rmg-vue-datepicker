@@ -17,29 +17,36 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import Years from './childs/Years.vue';
 import DateInput from './childs/DateInput.vue';
 import Months from './childs/Months.vue';
 import Dates from './childs/Dates.vue';
+
 export default {
   name: 'DatePicker',
+
   components: {
     Years,
     DateInput,
     Months,
     Dates
   },
-  data: function() {
-    return {
-      showYears: false,
-      showMonths: false,
-      showDates: true
-    }
-  }
+
+  computed: mapState([
+    'showYears',
+    'showMonths',
+    'showDates'
+  ]),
 }
 </script>
 
 <style lang="scss">
+  .datepicker-panel-container {
+    display: inline-block;
+    text-align: center;
+  }
 
   .datepicker-panel {
     width: 22rem;

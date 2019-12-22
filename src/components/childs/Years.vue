@@ -1,9 +1,9 @@
 <template>
   <div class="datepicker-panel year-picker">
     <ul class="navigation">
-      <li>prev</li>
-      <li class="disabled">2014 - 2025</li>
-      <li>next</li>
+      <li @click="prevYears">prev</li>
+      <li class="disabled">{{ years[0] }} - {{ years[years.length - 1] }}</li>
+      <li @click="nextYears">next</li>
     </ul>
 
     <ul class="list year-list">
@@ -15,12 +15,26 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'Years',
-  data: function() {
-    return {
-      years: [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
-    }
+
+  computed: {
+    ...mapState([
+      'today',
+      'months',
+      'startDay',
+      'years',
+      'dates'
+    ])
+  },
+
+  methods: {
+    ...mapActions([
+      'prevYears',
+      'nextYears'
+    ])
   }
 }
 </script>

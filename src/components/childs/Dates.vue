@@ -2,7 +2,7 @@
   <div class="datepicker-panel date-picker">
     <ul class="navigation">
       <li @click="prevMonth">prev</li>
-      <li>{{ months[today.getMonth()]}} {{today.getFullYear() }}</li>
+      <li @click="triggerShowMonth">{{ months[today.getMonth()]}} {{today.getFullYear() }}</li>
       <li @click="nextMonth">next</li>
     </ul>
 
@@ -14,7 +14,7 @@
       <li v-for="date in startDay" :key="date" class="disabled">
         &nbsp;
       </li>
-      <li v-for="date in dates" :key="date.index">
+      <li v-for="(date) in dates" :key="date.index" @click="testClick()">
         {{ date }}
       </li>
     </ul>
@@ -27,13 +27,15 @@ import { mapState, mapActions } from 'vuex';
 export default {
   name: 'Dates',
 
-  computed: mapState([
-    'today',
-    'months',
-    'daysName',
-    'startDay',
-    'dates'
-  ]),
+  computed: {
+    ...mapState([
+      'today',
+      'months',
+      'daysName',
+      'startDay',
+      'dates'
+    ])
+  },
 
   watch: {
 
@@ -44,14 +46,18 @@ export default {
       'prevMonth',
       'nextMonth',
       'initDates',
+      'pickDate',
+      'triggerShowMonth',
       'testing'
     ]),
+
+    testClick: function() {
+      console.log('test click');
+    }
   },
 
   mounted: function() {
     this.initDates();
-    // this.dates = this.totalDays(this.today.getFullYear(), this.today.getMonth());
-    // this.startDay = this.firstDay(this.today.getFullYear(), this.today.getMonth());
     // this.testing();
   }
 }
