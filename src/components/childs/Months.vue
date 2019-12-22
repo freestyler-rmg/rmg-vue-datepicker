@@ -7,7 +7,12 @@
     </ul>
 
     <ul class="list month-list">
-      <li v-for="month in months" :key="month.index" @click="triggerShowDate">
+      <li
+        v-for="(month, index) in months"
+        :key="month.index"
+        @click="triggerShowDate(index)"
+        :class="{ 'active' : ( index == todayMonth ) }"
+      >
         {{ month }}
       </li>
     </ul>
@@ -23,6 +28,7 @@ export default {
   computed: {
     ...mapState([
       'today',
+      'todayMonth',
       'months',
       'startDay',
       'dates'

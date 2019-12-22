@@ -16,6 +16,13 @@ export const store = new Vuex.Store({
     showMonths: false,
     showDates: true,
     today: new Date(),
+    todayDate: 0,
+    todayMonth: 0,
+    todayYear: 0,
+    chosenDate: new Date().getDate(),
+    chosenMonth: new Date().getMonth(),
+    chosenYear: new Date().getFullYear(),
+    chosenFull: '',
     months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Des"],
     daysName: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
     startDay: 0,
@@ -42,6 +49,9 @@ export const store = new Vuex.Store({
 
     refreshDates(state) {
       state.dates = totalDays(state.today.getFullYear(), state.today.getMonth());
+      state.todayDate = state.today.getDate();
+      state.todayMonth = state.today.getMonth();
+      state.todayYear = state.today.getFullYear();
     },
 
     refreshStartDay(state) {
@@ -52,10 +62,21 @@ export const store = new Vuex.Store({
       state.years = shiftYears(state.today.getFullYear());
     },
 
+    changeDate(state, date) {
+      state.chosenDate = date;
+      // state.today = state.today.setDate(date);
+    },
+
     showDatePicker(state) {
       state.showDates = true;
       state.showMonths = false;
       state.showYears = false;
+    },
+
+    changeMonth(state, month) {
+      // state.today = new Date(state.today.setMonth(state.today.getMonth()));
+      state.chosenMonth = month;
+      state.today = state.today.setMonth(month);
     },
 
     showMonthPicker(state) {
@@ -68,6 +89,10 @@ export const store = new Vuex.Store({
       state.showDates = false;
       state.showMonths = false;
       state.showYears = true;
+    },
+
+    getChosenFull(state) {
+      state.chosenFull = `${state.chosenDate} ${state.months[state.chosenMonth]} ${state.chosenYear}}`
     }
   },
 
@@ -96,16 +121,19 @@ export const store = new Vuex.Store({
       commit('refreshDates');
       commit('refreshStartDay');
       commit('refreshYears');
-      console.log(this.state.years);
+
+      // console.log(this.state.chosenMonth);
     },
 
-    pickDate(test) {
-      console.log('pick a date');
-      console.log(test);
-    },
+    // pickDate({ commit }, date) {
+    //   // console.log('pick a date');
+    //   // console.log(test);
+    //   // commit('changeDate', date);
+    // },
 
-    triggerShowDate({ commit }) {
+    triggerShowDate({ commit }, month) {
       commit('showDatePicker');
+      commit('changeMonth', month);
     },
 
     triggerShowMonth({ commit }) {

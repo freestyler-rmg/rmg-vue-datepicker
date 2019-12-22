@@ -7,7 +7,12 @@
     </ul>
 
     <ul class="list year-list">
-      <li v-for="year in years" :key="year.index">
+      <li
+        v-for="year in years"
+        :key="year.index"
+        :class="{ 'active' : ( year == todayYear ) }"
+        @click="triggerShowMonth"
+      >
         {{ year }}
       </li>
     </ul>
@@ -23,6 +28,7 @@ export default {
   computed: {
     ...mapState([
       'today',
+      'todayYear',
       'months',
       'startDay',
       'years',
@@ -33,7 +39,8 @@ export default {
   methods: {
     ...mapActions([
       'prevYears',
-      'nextYears'
+      'nextYears',
+      'triggerShowMonth'
     ])
   }
 }

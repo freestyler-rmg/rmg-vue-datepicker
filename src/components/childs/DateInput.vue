@@ -12,9 +12,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'DateInput',
-  props: ['focus', 'blur']
+  props: ['focus', 'blur'],
+  computed: {
+    ...mapState([
+      'chosenFull'
+    ])
+  },
 }
 </script>
 

@@ -14,7 +14,12 @@
       <li v-for="date in startDay" :key="date" class="disabled">
         &nbsp;
       </li>
-      <li v-for="(date) in dates" :key="date.index" @click="testClick()">
+      <li
+        v-for="date in dates"
+        :key="date.index"
+        @click="pickDate(date)"
+        :class="{ 'active' : (date == chosenDate) }"
+      >
         {{ date }}
       </li>
     </ul>
@@ -33,7 +38,10 @@ export default {
       'months',
       'daysName',
       'startDay',
-      'dates'
+      'dates',
+      'todayDate',
+      'chosenFull',
+      'chosenDate'
     ])
   },
 
@@ -48,6 +56,7 @@ export default {
       'initDates',
       'pickDate',
       'triggerShowMonth',
+      'pickDate',
       'testing'
     ]),
 
